@@ -20,7 +20,7 @@ def get_zillow_data(use_cache=True):
     query = '''
     SELECT bedroomcnt, bathroomcnt, calculatedfinishedsquarefeet, taxvaluedollarcnt, yearbuilt, taxamount, fips
     FROM properties_2017
-    JOIN propertylandusetype USING(propertylandusetypeid)
+    LEFT JOIN propertylandusetype USING(propertylandusetypeid)
     WHERE propertylandusedesc IN ("Single Family Residential", "Inferred Single Family Residential");
     '''
     df = pd.read_sql(query, database_url_base + 'zillow')
